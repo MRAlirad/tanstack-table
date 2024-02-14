@@ -13,7 +13,7 @@ const defaultData = [
 		studentId: 1111,
 		name: 'Bahar Constantia',
 		dateOfBirth: '1984-01-04',
-		major: 'Business',
+		major: 'Computer Science',
 	},
 	{
 		studentId: 2222,
@@ -31,7 +31,7 @@ const defaultData = [
 		studentId: 4444,
 		name: 'Marvyn Wendi',
 		dateOfBirth: '1978-09-24',
-		major: 'Business',
+		major: 'Psychology',
 	},
 ];
 

@@ -8,7 +8,7 @@ const ActionCell = ({ row, table }) => {
 			...old,
 			[row.id]: !old[row.id],
 		}));
-		if (elName === 'edit') {
+		if (elName !== 'edit') {
 			meta?.revertData(row.index, e.currentTarget.name === 'cancel');
 		}
 	};
