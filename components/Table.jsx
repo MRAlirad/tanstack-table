@@ -39,18 +39,30 @@ const columns = [
 	columnHelper.accessor('studentId', {
 		header: 'Student ID',
 		cell: TableCell,
+		meta: {
+			type: 'number',
+		},
 	}),
 	columnHelper.accessor('name', {
 		header: 'Full Name',
 		cell: TableCell,
+		meta: {
+			type: 'text',
+		},
 	}),
 	columnHelper.accessor('dateOfBirth', {
 		header: 'Date of Birth',
 		cell: TableCell,
+		meta: {
+			type: 'date',
+		},
 	}),
 	columnHelper.accessor('major', {
 		header: 'Major',
 		cell: TableCell,
+		meta: {
+			type: 'text',
+		},
 	}),
 ];
 
