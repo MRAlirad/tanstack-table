@@ -6,6 +6,7 @@ import {
 	useReactTable,
 } from '@tanstack/react-table';
 import TableCell from './TableCell';
+import ActionCell from './ActionCell';
 
 const defaultData = [
 	{
@@ -64,15 +65,22 @@ const columns = [
 			type: 'text',
 		},
 	}),
+	columnHelper.display({
+		id: 'edit',
+		cell: ActionCell,
+	}),
 ];
 
 const Table = () => {
 	const [data, setData] = useState(() => [...defaultData]);
+	const [editedRows, setEditedRows] = useState({});
 	const table = useReactTable({
 		data,
 		columns,
 		getCoreRowModel: getCoreRowModel(),
 		meta: {
+			editedRows,
+			setEditedRows,
 			updateData: (rowIndex, columnId, value) => {
 				setData(old =>
 					old.map((row, index) => {
