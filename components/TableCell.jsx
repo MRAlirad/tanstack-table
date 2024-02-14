@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 const TableCell = ({ getValue, row, column, table }) => {
 	const initialValue = getValue();
+	const columnMeta = column.columnDef.meta;
+	const tableMeta = table.options.meta;
 	const [value, setValue] = useState(initialValue);
 
 	useEffect(() => {
@@ -10,17 +12,19 @@ const TableCell = ({ getValue, row, column, table }) => {
 	}, [initialValue]);
 
 	const onBlur = () => {
-		table.options.meta?.updateData(row.index, column.id, value);
+		tableMeta?.updateData(row.index, column.id, value);
 	};
 
-	return (
-		<input
-			value={value}
-			type={column.columnDef.meta?.type}
-			onBlur={onBlur}
-			onChange={e => setValue(e.target.value)}
-		/>
-	);
+	if (tableMeta?.editedRows[row.id])
+		return (
+			<input
+				value={value}
+				type={columnMeta?.type}
+				onBlur={onBlur}
+				onChange={e => setValue(e.target.value)}
+			/>
+		);
+	return <span>{value}</span>;
 };
 
 TableCell.propTypes = {
