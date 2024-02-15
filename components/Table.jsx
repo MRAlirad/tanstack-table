@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import useStudents from '../hooks/useStudents';
 import {
 	createColumnHelper,
 	flexRender,
@@ -9,36 +10,36 @@ import TableCell from './TableCell';
 import ActionCell from './ActionCell';
 import FooterCell from './FooterCell';
 
-const defaultData = [
-	{
-		studentId: 1111,
-		name: 'Bahar Constantia',
-		dateOfBirth: '1984-01-04',
-		major: 'Computer Science',
-	},
-	{
-		studentId: 2222,
-		name: 'Harold Nona',
-		dateOfBirth: '1961-05-10',
-		major: 'Communications',
-	},
-	{
-		studentId: 3333,
-		name: 'Raginolf Arnulf',
-		dateOfBirth: '1991-10-12',
-		major: 'Business',
-	},
-	{
-		studentId: 4444,
-		name: 'Marvyn Wendi',
-		dateOfBirth: '1978-09-24',
-		major: 'Psychology',
-	},
-];
+// const defaultData = [
+// 	{
+// 		studentId: 1111,
+// 		name: 'Bahar Constantia',
+// 		dateOfBirth: '1984-01-04',
+// 		major: 'Computer Science',
+// 	},
+// 	{
+// 		studentId: 2222,
+// 		name: 'Harold Nona',
+// 		dateOfBirth: '1961-05-10',
+// 		major: 'Communications',
+// 	},
+// 	{
+// 		studentId: 3333,
+// 		name: 'Raginolf Arnulf',
+// 		dateOfBirth: '1991-10-12',
+// 		major: 'Business',
+// 	},
+// 	{
+// 		studentId: 4444,
+// 		name: 'Marvyn Wendi',
+// 		dateOfBirth: '1978-09-24',
+// 		major: 'Psychology',
+// 	},
+// ];
 
 const columnHelper = createColumnHelper();
 const columns = [
-	columnHelper.accessor('studentId', {
+	columnHelper.accessor('studentNumber', {
 		header: 'Student ID',
 		cell: TableCell,
 		meta: {
@@ -83,8 +84,9 @@ const columns = [
 ];
 
 const Table = () => {
-	const [data, setData] = useState(() => [...defaultData]);
-	const [originalData, setOriginalData] = useState(() => [...defaultData]);
+	const { data: originalData, isValidating } = useStudents();
+	const [data, setData] = useState([]);
+	// const [originalData, setOriginalData] = useState(() => [...defaultData]);
 	const [editedRows, setEditedRows] = useState({});
 	const [validRow, setValidRow] = useState({});
 	const table = useReactTable({
@@ -102,11 +104,12 @@ const Table = () => {
 					setData(old =>
 						old.map((row, index) => (index === rowIndex ? originalData[rowIndex] : row))
 					);
-				} else {
-					setOriginalData(old =>
-						old.map((row, index) => (index === rowIndex ? data[rowIndex] : row))
-					);
 				}
+				// else {
+				// 	setOriginalData(old =>
+				// 		old.map((row, index) => (index === rowIndex ? data[rowIndex] : row))
+				// 	);
+				// }
 			},
 			updateData: (rowIndex, columnId, value, isValid) => {
 				setData(old =>
@@ -130,21 +133,26 @@ const Table = () => {
 				};
 				const setFunc = old => [...old, newRow];
 				setData(setFunc);
-				setOriginalData(setFunc);
+				// setOriginalData(setFunc);
 			},
 			removeRow: rowIndex => {
 				const setFilterFunc = old => old.filter((_row, index) => index !== rowIndex);
 				setData(setFilterFunc);
-				setOriginalData(setFilterFunc);
+				// setOriginalData(setFilterFunc);
 			},
 			removeSelectedRows: selectedRows => {
 				const setFilterFunc = old =>
 					old.filter((_row, index) => !selectedRows.includes(index));
 				setData(setFilterFunc);
-				setOriginalData(setFilterFunc);
+				// setOriginalData(setFilterFunc);
 			},
 		},
 	});
+
+	useEffect(() => {
+		if (isValidating) return;
+		setData([...originalData]);
+	}, [isValidating, originalData]);
 
 	return (
 		<table>
