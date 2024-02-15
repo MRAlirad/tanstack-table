@@ -18,7 +18,16 @@ const TableCell = ({ getValue, row, column, table }) => {
 	};
 
 	const displayValidationMessage = event => {
-		if (event.target.validity.valid) setValidationMessage('');
+		if (columnMeta?.validate) {
+			const isValid = columnMeta.validate(event.target.value);
+			if (isValid) {
+				event.target.setCustomValidity('');
+				setValidationMessage('');
+			} else {
+				event.target.setCustomValidity(columnMeta.validationMessage);
+				setValidationMessage(columnMeta.validationMessage);
+			}
+		} else if (event.target.validity.valid) setValidationMessage('');
 		else setValidationMessage(event.target.validationMessage);
 	};
 

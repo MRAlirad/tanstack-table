@@ -61,6 +61,12 @@ const columns = [
 		meta: {
 			type: 'date',
 			required: true,
+			validate: value => {
+				const date = new Date(value);
+				const today = new Date();
+				return date < today;
+			},
+			validationMessage: 'Date con not be in the future',
 		},
 	}),
 	columnHelper.accessor('major', {
