@@ -80,6 +80,7 @@ const Table = () => {
 		data,
 		columns,
 		getCoreRowModel: getCoreRowModel(),
+		enableRowSelection: true,
 		meta: {
 			editedRows,
 			setEditedRows,
@@ -117,6 +118,12 @@ const Table = () => {
 			},
 			removeRow: rowIndex => {
 				const setFilterFunc = old => old.filter((_row, index) => index !== rowIndex);
+				setData(setFilterFunc);
+				setOriginalData(setFilterFunc);
+			},
+			removeSelectedRows: selectedRows => {
+				const setFilterFunc = old =>
+					old.filter((_row, index) => !selectedRows.includes(index));
 				setData(setFilterFunc);
 				setOriginalData(setFilterFunc);
 			},

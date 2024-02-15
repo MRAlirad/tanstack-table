@@ -49,6 +49,11 @@ const ActionCell = ({ row, table }) => {
 					</button>
 				</div>
 			)}
+			<input
+				type="checkbox"
+				checked={row.getIsSelected()}
+				onChange={row.getToggleSelectedHandler()}
+			/>
 		</div>
 	);
 };
