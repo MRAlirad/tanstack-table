@@ -1,32 +1,95 @@
 {
-	"students": [
-		{
-			"id": 1,
-			"studentNumber": 1111,
-			"name": "Bahar Constantia",
-			"dateOfBirth": "1984-01-04",
-			"major": "Computer Science"
-		},
-		{
-			"id": 2,
-			"studentNumber": 2222,
-			"name": "Harold Nona",
-			"dateOfBirth": "1961-05-10",
-			"major": "Communications"
-		},
-		{
-			"id": 3,
-			"studentNumber": 3333,
-			"name": "Raginolf Arnulf",
-			"dateOfBirth": "1991-10-12",
-			"major": "Business"
-		},
-		{
-			"id": 4,
-			"studentNumber": 4444,
-			"name": "Marvyn Wendi",
-			"dateOfBirth": "1978-09-24",
-			"major": "Psychology"
-		}
-	]
+  "students": [
+    {
+      "id": "1",
+      "studentNumber": 1111,
+      "name": "Bahar Constantia",
+      "dateOfBirth": "1984-01-04",
+      "major": "Computer Science"
+    },
+    {
+      "id": "2",
+      "studentNumber": 2222,
+      "name": "Harold Nona",
+      "dateOfBirth": "1961-05-10",
+      "major": "Communications"
+    },
+    {
+      "id": "3",
+      "studentNumber": 3333,
+      "name": "Raginolf Arnulf",
+      "dateOfBirth": "1991-10-12",
+      "major": "Business"
+    },
+    {
+      "id": "4",
+      "studentNumber": 4444,
+      "name": "Marvyn Wendi",
+      "dateOfBirth": "1978-09-24",
+      "major": "Psycheoloasdfdfgy"
+    },
+    {
+      "id": "1c1a",
+      "studentId": 6973,
+      "name": "",
+      "dateOfBirth": "",
+      "major": ""
+    },
+    {
+      "id": "ca5e",
+      "studentId": 3246,
+      "name": "",
+      "dateOfBirth": "",
+      "major": ""
+    },
+    {
+      "id": "ab6b",
+      "studentId": 1038,
+      "name": "",
+      "dateOfBirth": "",
+      "major": ""
+    },
+    {
+      "id": "8fbf",
+      "studentNumber": 4307,
+      "name": "",
+      "dateOfBirth": "",
+      "major": ""
+    },
+    {
+      "id": "3483",
+      "studentNumber": 6007,
+      "name": "",
+      "dateOfBirth": "",
+      "major": ""
+    },
+    {
+      "id": "0af9",
+      "studentNumber": 3298,
+      "name": "",
+      "dateOfBirth": "",
+      "major": ""
+    },
+    {
+      "id": "813b",
+      "studentNumber": 6996,
+      "name": "",
+      "dateOfBirth": "",
+      "major": ""
+    },
+    {
+      "id": "745a",
+      "studentNumber": 2213,
+      "name": "",
+      "dateOfBirth": "",
+      "major": ""
+    },
+    {
+      "id": "6922",
+      "studentNumber": 4520,
+      "name": "",
+      "dateOfBirth": "",
+      "major": ""
+    }
+  ]
 }

@@ -84,7 +84,7 @@ const columns = [
 ];
 
 const Table = () => {
-	const { data: originalData, isValidating, updateRow } = useStudents();
+	const { data: originalData, isValidating, updateRow, addRow } = useStudents();
 	const [data, setData] = useState([]);
 	// const [data, setData] = useState(()=> [...defaultData]);
 	// const [originalData, setOriginalData] = useState(() => [...defaultData]);
@@ -138,11 +138,15 @@ const Table = () => {
 			},
 			addRow: () => {
 				const newRow = {
-					studentId: Math.floor(Math.random() * 10000),
+					studentNumber: Math.floor(Math.random() * 10000),
+					name: '',
+					dateOfBirth: '',
+					major: '',
 				};
-				const setFunc = old => [...old, newRow];
-				setData(setFunc);
+				// const setFunc = old => [...old, newRow];
+				// setData(setFunc);
 				// setOriginalData(setFunc);
+				addRow(newRow);
 			},
 			removeRow: rowIndex => {
 				const setFilterFunc = old => old.filter((_row, index) => index !== rowIndex);
