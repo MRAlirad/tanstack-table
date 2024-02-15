@@ -112,3 +112,7 @@ table .footer-buttons button {
 table .add-button {
 	color: #4bbd7f;
 }
+
+input:invalid {
+	border: 2px solid red;
+  }

@@ -6,13 +6,20 @@ const TableCell = ({ getValue, row, column, table }) => {
 	const columnMeta = column.columnDef.meta;
 	const tableMeta = table.options.meta;
 	const [value, setValue] = useState(initialValue);
+	const [validationMessge, setValidationMessage] = useState('');
 
 	useEffect(() => {
 		setValue(initialValue);
 	}, [initialValue]);
 
-	const onBlur = () => {
+	const onBlur = event => {
 		tableMeta?.updateData(row.index, column.id, value);
+		displayValidationMessage(event);
+	};
+
+	const displayValidationMessage = event => {
+		if (event.target.validity.valid) setValidationMessage('');
+		else setValidationMessage(event.target.validationMessage);
 	};
 
 	if (tableMeta?.editedRows[row.id])
@@ -22,6 +29,9 @@ const TableCell = ({ getValue, row, column, table }) => {
 				type={columnMeta?.type}
 				onBlur={onBlur}
 				onChange={e => setValue(e.target.value)}
+				required={columnMeta?.required}
+				pattern={columnMeta?.pattern}
+				title={validationMessge}
 			/>
 		);
 	return <span>{value}</span>;

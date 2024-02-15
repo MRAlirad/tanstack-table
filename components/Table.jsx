@@ -43,6 +43,7 @@ const columns = [
 		cell: TableCell,
 		meta: {
 			type: 'number',
+			required: true,
 		},
 	}),
 	columnHelper.accessor('name', {
@@ -50,6 +51,8 @@ const columns = [
 		cell: TableCell,
 		meta: {
 			type: 'text',
+			required: true,
+			pattern: '^[a-zA-Z ]+$',
 		},
 	}),
 	columnHelper.accessor('dateOfBirth', {
@@ -57,6 +60,7 @@ const columns = [
 		cell: TableCell,
 		meta: {
 			type: 'date',
+			required: true,
 		},
 	}),
 	columnHelper.accessor('major', {
