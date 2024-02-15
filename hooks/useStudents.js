@@ -29,6 +29,16 @@ const addRequest = async (data) => {
     return response.json();
 };
 
+const deleteRequest = async (id) => {
+    const response = await fetch(`${url}/${id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    });
+    return response.json();
+};
+
 const useStudents = () => {
     const {data, isValidating} = useSWR(url, getRequest);
 
@@ -42,11 +52,17 @@ const useStudents = () => {
         mutate(url);
     };
 
+    const deleteRow = async (id) => {
+        await deleteRequest(id);
+        mutate(url);
+    };
+
     return {
         data: data ?? [],
         isValidating,
         updateRow,
         addRow,
+        deleteRow,
     };
 };
 

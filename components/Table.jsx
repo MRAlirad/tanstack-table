@@ -84,7 +84,7 @@ const columns = [
 ];
 
 const Table = () => {
-	const { data: originalData, isValidating, updateRow, addRow } = useStudents();
+	const { data: originalData, isValidating, updateRow, addRow, deleteRow } = useStudents();
 	const [data, setData] = useState([]);
 	// const [data, setData] = useState(()=> [...defaultData]);
 	// const [originalData, setOriginalData] = useState(() => [...defaultData]);
@@ -149,14 +149,18 @@ const Table = () => {
 				addRow(newRow);
 			},
 			removeRow: rowIndex => {
-				const setFilterFunc = old => old.filter((_row, index) => index !== rowIndex);
-				setData(setFilterFunc);
+				deleteRow(data[rowIndex].id);
+				// const setFilterFunc = old => old.filter((_row, index) => index !== rowIndex);
+				// setData(setFilterFunc);
 				// setOriginalData(setFilterFunc);
 			},
 			removeSelectedRows: selectedRows => {
-				const setFilterFunc = old =>
-					old.filter((_row, index) => !selectedRows.includes(index));
-				setData(setFilterFunc);
+				selectedRows.forEach(rowIndex => {
+					deleteRow(data[rowIndex].id);
+				});
+				// const setFilterFunc = old =>
+				// 	old.filter((_row, index) => !selectedRows.includes(index));
+				// setData(setFilterFunc);
 				// setOriginalData(setFilterFunc);
 			},
 		},
