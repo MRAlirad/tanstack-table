@@ -106,6 +106,14 @@ const Table = () => {
 					})
 				);
 			},
+			addRow: () => {
+				const newRow = {
+					studentId: Math.floor(Math.random() * 10000),
+				};
+				const setFunc = old => [...old, newRow];
+				setData(setFunc);
+				setOriginalData(setFunc);
+			},
 		},
 	});
 
@@ -133,6 +141,16 @@ const Table = () => {
 					</tr>
 				))}
 			</tbody>
+			<tfoot>
+				<tr>
+					<th
+						colSpan={table.getCenterLeafColumns().length}
+						align="right"
+					>
+						<FooterCell table={table} />
+					</th>
+				</tr>
+			</tfoot>
 		</table>
 	);
 };
