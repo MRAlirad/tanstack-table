@@ -86,6 +86,7 @@ const Table = () => {
 	const [data, setData] = useState(() => [...defaultData]);
 	const [originalData, setOriginalData] = useState(() => [...defaultData]);
 	const [editedRows, setEditedRows] = useState({});
+	const [validRow, setValidRow] = useState({});
 	const table = useReactTable({
 		data,
 		columns,
@@ -94,6 +95,8 @@ const Table = () => {
 		meta: {
 			editedRows,
 			setEditedRows,
+			validRow,
+			setValidRow,
 			revertData: (rowIndex, revert) => {
 				if (revert) {
 					setData(old =>
@@ -105,7 +108,7 @@ const Table = () => {
 					);
 				}
 			},
-			updateData: (rowIndex, columnId, value) => {
+			updateData: (rowIndex, columnId, value, isValid) => {
 				setData(old =>
 					old.map((row, index) => {
 						if (index === rowIndex) {
@@ -117,6 +120,9 @@ const Table = () => {
 						return row;
 					})
 				);
+				setValidRow(old => ({
+					[rowIndex]: { ...old[rowIndex], [columnId]: isValid },
+				}));
 			},
 			addRow: () => {
 				const newRow = {

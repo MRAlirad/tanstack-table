@@ -115,4 +115,9 @@ table .add-button {
 
 input:invalid {
 	border: 2px solid red;
-  }
+}
+
+table .edit-cell-action button[name='done']:disabled {
+	background-color: #ccc;
+	cursor: not-allowed;
+}

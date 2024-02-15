@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 
 const ActionCell = ({ row, table }) => {
 	const meta = table.options.meta;
+	const validRow = meta?.validRow[row.id];
+	const disabledSubmit = validRow ? Object.values(validRow)?.some(item => !item) : false;
 	const setEditedRows = e => {
 		const elName = e.currentTarget.name;
 		meta?.setEditedRows(old => ({
@@ -29,6 +31,7 @@ const ActionCell = ({ row, table }) => {
 					<button
 						onClick={setEditedRows}
 						name="done"
+						disabled={disabledSubmit}
 					>
 						✔
 					</button>

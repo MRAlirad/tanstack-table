@@ -13,7 +13,7 @@ const TableCell = ({ getValue, row, column, table }) => {
 	}, [initialValue]);
 
 	const onBlur = event => {
-		tableMeta?.updateData(row.index, column.id, value);
+		tableMeta?.updateData(row.index, column.id, value, event.target.validity.valid);
 		displayValidationMessage(event);
 	};
 
