@@ -84,8 +84,9 @@ const columns = [
 ];
 
 const Table = () => {
-	const { data: originalData, isValidating } = useStudents();
+	const { data: originalData, isValidating, updateRow } = useStudents();
 	const [data, setData] = useState([]);
+	// const [data, setData] = useState(()=> [...defaultData]);
 	// const [originalData, setOriginalData] = useState(() => [...defaultData]);
 	const [editedRows, setEditedRows] = useState({});
 	const [validRow, setValidRow] = useState({});
@@ -99,17 +100,22 @@ const Table = () => {
 			setEditedRows,
 			validRow,
 			setValidRow,
-			revertData: (rowIndex, revert) => {
-				if (revert) {
-					setData(old =>
-						old.map((row, index) => (index === rowIndex ? originalData[rowIndex] : row))
-					);
-				}
-				// else {
-				// 	setOriginalData(old =>
-				// 		old.map((row, index) => (index === rowIndex ? data[rowIndex] : row))
-				// 	);
-				// }
+			// revertData: (rowIndex, revert) => {
+			// if (revert) { // revert was in parameters
+			// 	setData(old =>
+			// 		old.map((row, index) => (index === rowIndex ? originalData[rowIndex] : row))
+			// 	);
+			// }
+			// else {
+			// 	setOriginalData(old =>
+			// 		old.map((row, index) => (index === rowIndex ? data[rowIndex] : row))
+			// 	);
+			// }
+			// },
+			revertData: rowIndex => {
+				setData(old =>
+					old.map((row, index) => (index === rowIndex ? originalData[rowIndex] : row))
+				);
 			},
 			updateData: (rowIndex, columnId, value, isValid) => {
 				setData(old =>
@@ -126,6 +132,9 @@ const Table = () => {
 				setValidRow(old => ({
 					[rowIndex]: { ...old[rowIndex], [columnId]: isValid },
 				}));
+			},
+			updateRow: rowIndex => {
+				updateRow(data[rowIndex].id, data[rowIndex]);
 			},
 			addRow: () => {
 				const newRow = {
