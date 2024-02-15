@@ -7,6 +7,7 @@ import {
 } from '@tanstack/react-table';
 import TableCell from './TableCell';
 import ActionCell from './ActionCell';
+import FooterCell from './FooterCell';
 
 const defaultData = [
 	{
@@ -113,6 +114,11 @@ const Table = () => {
 				const setFunc = old => [...old, newRow];
 				setData(setFunc);
 				setOriginalData(setFunc);
+			},
+			removeRow: rowIndex => {
+				const setFilterFunc = old => old.filter((_row, index) => index !== rowIndex);
+				setData(setFilterFunc);
+				setOriginalData(setFilterFunc);
 			},
 		},
 	});
