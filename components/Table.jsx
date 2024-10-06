@@ -12,7 +12,7 @@ import FooterCell from './FooterCell';
 
 // const defaultData = [
 // 	{
-// 		studentId: 1111,
+// 		studentId: 11111,
 // 		name: 'Bahar Constantia',
 // 		dateOfBirth: '1984-01-04',
 // 		major: 'Computer Science',
